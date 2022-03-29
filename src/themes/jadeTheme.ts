@@ -16,11 +16,32 @@ export const lightTheme = responsiveFontSizes(createMuiTheme({
         background: "#fff !important",
       },
     },
+    MuiLinearProgress: {
+      root: {
+        backgroundColor: "#e7e7e7 !important",
+        height: '7px',
+        borderRadius: '4px',
+      }
+    }
   },
   palette: {
-    background: {
-      default: "#fff",
+    primary: {
+      main: "#33B968"
     },
+    background: {
+      default: "#F4F4F4",
+    },
+  },
+  typography: {
+    fontFamily: [
+      '"Montserrat"',
+      'sans-serif'
+    ].join(','),
+    fontSize: 16,
+    fontWeightRegular: 400,
+    body2: {
+      fontSize: '0.875rem'
+    }
   },
 }));
 
@@ -51,6 +72,17 @@ export const darkTheme = responsiveFontSizes(createMuiTheme({
         color: grey[400],
       },
     },
+  },
+  typography: {
+    fontFamily: [
+      '"Montserrat"',
+      'sans-serif'
+    ].join(','),
+    fontSize: 16,
+    fontWeightRegular: 400,
+    body2: {
+      fontSize: '0.875rem'
+    }
   },
 }));
 

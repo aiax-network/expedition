@@ -74,7 +74,7 @@ function BlockList({ blocks }: any) {
             return (
               <TableRow key={b.number} style={authorHashStyle}>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>
+                  <Typography variant="body2">
                     <Link
                       component={({ className, children }: { children: any, className: string }) => (
                         <RouterLink className={className} to={`/address/${b.miner}`} >
@@ -97,7 +97,7 @@ function BlockList({ blocks }: any) {
                   </Link>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
-                  <Typography>{t("Timestamp Date", { date: hexToDate(b.timestamp) })}
+                  <Typography variant="body2">{t("Timestamp Date", { date: hexToDate(b.timestamp) })}
                     &nbsp;
                     <sub>({tdfp > 0 ? `+${tdfp}` : `-${tdfp}`}s)</sub>
                   </Typography>
@@ -111,13 +111,13 @@ function BlockList({ blocks }: any) {
                       {txTypes.create === 0 ? "" : txTypes.create}
                     </Typography>
                   </Tooltip>
-                  <Typography>{txTypes.transact}</Typography>
+                  <Typography variant="body2">{txTypes.transact}</Typography>
                 </TableCell>
                 <TableCell style={rightPaddingFix}>
                   <LinearProgress value={filledPercent} variant="determinate" />
                 </TableCell>
                 <TableCell>
-                  <Typography>{hexToNumber(b.gasLimit)}</Typography>
+                  <Typography variant="body2">{hexToNumber(b.gasLimit)}</Typography>
                 </TableCell>
                 <TableCell>
                   <Typography>{b.uncles.length === 0 ? "" : b.uncles.length}</Typography>

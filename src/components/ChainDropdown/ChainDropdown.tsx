@@ -7,13 +7,14 @@ interface IProps {
   chains: Chain[];
   selected: Chain;
   onChange: (chain: Chain) => void;
+  buttonStyle?: React.CSSProperties;
 }
 
 const ITEM_HEIGHT = 48;
 
 const ChainDropdown: React.FC<IProps> = (props: IProps) => {
   const { t } = useTranslation();
-  const { selected, onChange, chains } = props;
+  const { selected, onChange, chains, buttonStyle } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,7 +33,7 @@ const ChainDropdown: React.FC<IProps> = (props: IProps) => {
   return (
     <>
       <Tooltip title={t("Switch Chain") as string}>
-        <Button onClick={handleClick}>{selected.name}</Button>
+        <Button onClick={handleClick} style={buttonStyle}> {selected.name}</Button>
       </Tooltip>
 
       <Menu

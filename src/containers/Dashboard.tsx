@@ -88,8 +88,8 @@ export default (props: any) => {
 
   return (
     <div>
-      <Grid container spacing={3} direction="column">
-        <Grid item container justify="space-between">
+      <Grid container direction="column" className="stats">
+        <Grid item container justify="space-between" className="numbers section">
           <Grid item key="blockHeight">
             <ChartCard title={t("Block Height")}>
               <Typography variant="h4">{blockNumber}</Typography>
@@ -133,11 +133,12 @@ export default (props: any) => {
         </Grid>
       </Grid>
       <StatCharts victoryTheme={victoryTheme} blocks={blocks} />
-      <Grid container justify="flex-end">
+      <Grid container className="links">
         <Button
+          size="small"
           color="primary"
           variant="outlined"
-          endIcon={<ArrowForwardIos />}
+          endIcon={<ArrowForwardIos style={{fontSize: "14px"}}/>}
           onClick={() => props.history.push("/stats/miners")}
         >More Stats</Button>
       </Grid>
@@ -151,7 +152,7 @@ export default (props: any) => {
         onNext={() => {
           props.history.push(`/blocks/${blockNumber - 15}`);
         }}
-        style={{ marginTop: "30px" }} />
+        className={"table section"} />
     </div >
   );
 };

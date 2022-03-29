@@ -51,6 +51,7 @@ export default function NodeView(props: any) {
         const newQuery = Math.max(blockNum - 15, 0);
         props.history.push(`/blocks/${newQuery}`);
       }}
+      className={"table section"}
     />
   );
 }

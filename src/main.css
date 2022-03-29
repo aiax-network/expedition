@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F4F4F4;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+}
+a {
+    color: #33B968;
+    text-decoration: none;
+}
+a:hover {
+    color: #33B968;
+    text-decoration: underline;
+}
+header.site-header {
+    background-color: #fff;
+    min-height: 80px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.site-header .nav-toggler {
+    display: none;
+}
+.site-header .menu {
+    width: calc(50% - 30px);
+    transition: all ease-in 0.2s;
+    align-self: center;
+}
+.site-header .menu ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.site-header .menu ul li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all ease-in 0.2s;
+    cursor: pointer;
+}
+.site-header .menu ul li a:hover {
+    color: #1FD869;
+}
+.site-header .menu ul li.active {
+    position: relative;
+}
+.site-header .menu ul li.active a {
+    pointer-events: none;
+}
+.site-header .menu ul li.active::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 46px;
+    height: 4px;
+    background-color: #1FD869;
+    left: 0;
+    bottom: -6px;
+}
+@media only screen and (max-width: 1476px) {
+    .site-header .menu {
+        width: calc(100% - 250px);
+    }
+}
+@media only screen and (max-width: 991px) and (min-width: 769px) {
+    header.site-header {
+        flex-direction: column;
+        min-height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .site-header .logo {
+        margin-bottom: 10px;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .site-header .menu {
+        width: 100%;
+    }
+    .site-header .menu ul li a {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .site-header {
+        position: relative;
+    }
+    .site-header .nav-toggler {
+        display: inline-block;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+    .site-header .menu {
+        display: none;
+        top: -80px;
+    }
+    .site-header .menu.open {
+        display: block;
+        max-height: 480px;
+        position: absolute;
+        top: 80px;
+        left: 0%;
+        z-index: 12;
+        background-color: #fff;
+        border-top: 1px solid  #E7E7E7;;
+    }
+    .site-header .menu.open ul {
+        flex-direction: column;
+        padding: 12px 0;
+    }
+    .site-header .menu.open ul li a {
+        display: block;
+        font-size: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .site-header .menu.open ul li.active::after {
+        left: 0;
+        bottom: 3px;
+        width: 100%;
+    }
+}
+
+
+
+/**** Content ****/
+.site-content {
+    margin-top: 50px;
+    padding: 0 30px;
+}
+.site-content .section {
+    margin-bottom: 30px;
+}
+.site-content .search .textfield {
+    box-sizing: border-box;
+    background-color: #E7E7E7;
+    border-radius: 4px;
+    padding: 5px 10px 0px;
+    width: 50%;
+}
+@media only screen and (max-width: 991px) {
+    .site-content .search .textfield {
+        width: 100%;
+    }
+}
+.site-content .search .textfield input {
+    font: message-box;
+    width: 100%;
+    font-size: 14px;
+    border: 0;
+    height: 1.1876em;
+    margin: 0;
+    display: block;
+    padding: 6px 0 9px;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+}
+.site-content .search .textfield input:focus {
+    outline: 0;
+}
+
+.site-content .search .textfield input::placeholder {
+    opacity: 0.62;
+}
+
+.site-content .stats .numbers {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.site-content .stats .numbers .MuiCardContent-root {
+    padding: 0px;
+}
+
+.site-content .stats .graphs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.site-content .stats h6, .table .MuiTableCell-head p {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+.site-content .stats h4 {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.site-content .stats .graphs .grid-item {
+    max-width: 25%;
+    flex-basis: calc((100% - 60px) / 4);
+}
+@media only screen and (max-width: 991px) {
+    .site-content .stats .graphs .grid-item {
+        max-width: 50%;
+        flex-basis: calc((100% - 20px) / 2);
+    }
+}
+@media only screen and (max-width: 768px) {
+    .site-content .stats .graphs .grid-item {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+.site-content .stats .graphs .grid-item .wrapper {
+    background: #fff;
+    padding: 20px;
+}
+.site-content .table {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    margin-top: 30px;
+    background-color: #fff;
+}
+.site-content .table .MuiTableCell-head,
+.site-content .table .mdc-data-table__cell {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    border-bottom-color: #E7E7E7;
+}
+.site-content .table .mdc-data-table__table {
+    border-collapse: collapse;
+}
+.site-content .table a {
+    font-weight: 500;
+}
+.progress-bar {
+    height: 7px;
+    border-radius: 4px;
+    background-color: #E7E7E7;
+    position: relative;
+    overflow: hidden;
+}
+.progress-bar .progress {
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    transition: transform 0.2s linear;
+    transform-origin: left;
+    background-color: #1FD869;
+    border-radius: 4px;
+}
+.site-content .links {
+    display: flex;
+    justify-content: flex-end;
+}
+.site-content .links button {
+    border: 1px solid #33B968;
+    color: #33B968;
+}
+.site-content .links button:hover {
+    border: 1px solid #1FD869;
+    background-color: #1FD869;
+    color: #fff;
+}
+.site-content .links button:hover svg path {
+    fill: #fff;
+}
+
+.chart-container {
+    gap: 20px;
+    flex-wrap: nowrap !important;
+}
+
+/* For React useDarkMode() light-mode dark-mode */
+
+.light-mode .chart-grid {
+    background-color: #fff;
+}

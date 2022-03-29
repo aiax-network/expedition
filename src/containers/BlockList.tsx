@@ -12,12 +12,13 @@ interface IProps {
   disablePrev: boolean;
   disableNext: boolean;
   style?: any;
+  className?: any;
   onNext?: any;
   onPrev?: any;
 }
 
 export default function BlockListContainer(props: IProps) {
-  const { from, to, style } = props;
+  const { from, to, style, className } = props;
   const [erpc] = useEthRPCStore();
   const [blocks, setBlocks] = React.useState<IBlock[]>();
   React.useEffect(() => {
@@ -30,7 +31,7 @@ export default function BlockListContainer(props: IProps) {
     return <CircularProgress />;
   }
   return (
-    <div style={style}>
+    <div style={style} className={className}>
       <Grid container justify="flex-end">
         <IconButton onClick={props.onPrev} disabled={props.disablePrev}>
           <ArrowBackIos />
