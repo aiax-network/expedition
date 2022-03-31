@@ -15,6 +15,18 @@ RUN npm run build
 # STEP 2 build a small nginx image with static website
 FROM nginx:alpine
 
+# Config to always open /index.html because of client-side routing
+RUN echo "server { \
+    listen       80; \
+    listen  [::]:80; \
+    server_name  localhost; \
+    location / { \
+        root   /usr/share/nginx/html; \
+        index  index.html; \
+        try_files \$uri /index.html; \
+    } \
+}" > /etc/nginx/conf.d/default.conf
+
 # Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
 
