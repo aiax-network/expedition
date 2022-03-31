@@ -40,7 +40,7 @@ export default {
   "Block": "블록",
   "Gas Used": "Gas 소모",
   "Cumulative Gas Used": "누적 Gas소모",
-  "Value in Ether": "Ether값",
+  "Value in Aiax": "Aiax값",
   "From": "부터",
   "To": "으로",
   "Contract Address": "계약주소",
@@ -55,6 +55,6 @@ export default {
   // configuration menu
   "Configuration": "구성",
   "Back": "뒤로",
-  "Ethereum RPC": "Ethereum RPC",
+  "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
 };

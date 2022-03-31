@@ -40,7 +40,7 @@ export default {
   "Block": "区块",
   "Gas Used": "Gas 消耗",
   "Cumulative Gas Used": "累计Gas消耗",
-  "Value in Ether": "Ether值",
+  "Value in Aiax": "Aiax值",
   "From": "从",
   "To": "到",
   "Contract Address": "合约地址",
@@ -55,6 +55,6 @@ export default {
   // configuration menu
   "Configuration": "配置",
   "Back": "返回",
-  "Ethereum RPC": "Ethereum RPC",
+  "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
 };

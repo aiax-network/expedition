@@ -8,6 +8,7 @@ import {
   InputBase,
   Tooltip,
   CircularProgress,
+  Button,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
@@ -57,6 +58,7 @@ function App(props: any) {
   const { t } = useTranslation();
   const darkMode = useDarkMode();
   const [search, setSearch] = useState();
+  const [faucetAddress, setFaucetAddress] = useState();
   const theme = darkMode.value ? darkTheme : lightTheme;
 
   const [selectedChain, setSelectedChain] = useState<Chain>();
@@ -212,6 +214,37 @@ function App(props: any) {
     }
   };
 
+  const requestFaucet = (address: string | undefined) => {
+    if (address === undefined) {
+      return;
+    }
+    const q = address.trim();
+    if (isAddress(q)) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      };
+      fetch('https://test-rpc.aiax.network/faucet/give/?address=' + q, requestOptions)
+        .then(async response => {
+          const data = await response.json();
+          if (response.ok) {
+            console.log('Success faucet, transaction: ' + data.transaction);
+            alert('Test coins successfully sent to the address ' + q + '\n\nTransaction: ' + data.transaction);
+          } else {
+            console.error('Error faucet, details: ' + JSON.stringify(data));
+            switch (response.status) {
+              case 503: alert('Reached faucet limit, please try later'); break;
+              case 400: alert('Invalid address provided'); break;
+              default: alert('An error occurred during request to faucet');
+            }
+          }
+        })
+        .catch(error => {
+          console.error('Fetch error', error);
+        });
+    }
+  };
+
   return (
     <Router history={history}>
       <ThemeProvider theme={theme}>
@@ -243,25 +276,45 @@ function App(props: any) {
                 {!query.rpcUrl && <CircularProgress />}
               </>
             )}
-            <Grid item xs={12} className="section search">
-              <InputBase
-                placeholder={t(
-                  "Enter an Address, Transaction Hash or Block Number"
-                )}
-                onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
-                  if (event.keyCode === 13) {
-                    handleSearch(search);
-                  }
-                }}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  if (event.target.value) {
-                    const { value } = event.target;
-                    setSearch(value as any);
-                  }
-                }}
-                fullWidth
-                className={"textfield"}
-              />
+            <Grid container className="section" justify="space-between" spacing={2}>
+              <Grid item xs={6} className="search">
+                <InputBase
+                  placeholder={t(
+                    "Enter an Address, Transaction Hash or Block Number"
+                  )}
+                  onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+                    if (event.keyCode === 13) {
+                      handleSearch(search);
+                    }
+                  }}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    if (event.target.value) {
+                      const { value } = event.target;
+                      setSearch(value as any);
+                    }
+                  }}
+                  className={"textfield"}
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={6} className="faucet">
+                <InputBase
+                  placeholder="Enter an address to get test coins"
+                  className={"textfield"}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    if (event.target.value) {
+                      const { value } = event.target;
+                      setFaucetAddress(value as any);
+                    }
+                  }}
+                />
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  size="small"
+                  onClick={() => requestFaucet(faucetAddress)}
+                >Get Coins</Button>
+              </Grid>
             </Grid>
             <Switch>
               <Route path={"/"} component={Dashboard} exact={true} />

@@ -135,7 +135,6 @@ header.site-header {
 }
 
 
-
 /**** Content ****/
 .site-content {
     margin-top: 50px;
@@ -144,19 +143,36 @@ header.site-header {
 .site-content .section {
     margin-bottom: 30px;
 }
-.site-content .search .textfield {
+.site-content .textfield {
     box-sizing: border-box;
     background-color: #E7E7E7;
     border-radius: 4px;
     padding: 5px 10px 0px;
+}
+.site-content .search {
+    min-width: 400px;
+}
+.site-content .faucet {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 400px;
+    position: relative;
+}
+.site-content .faucet::after {
+    content: "Faucet for test network";
+    position: absolute;
+    display: block;
+    margin-top: -50px;
+    padding: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+.site-content .faucet .textfield {
+    margin-right: 15px;
     width: 50%;
 }
-@media only screen and (max-width: 991px) {
-    .site-content .search .textfield {
-        width: 100%;
-    }
-}
-.site-content .search .textfield input {
+.site-content .textfield input {
     font: message-box;
     width: 100%;
     font-size: 14px;
@@ -169,12 +185,24 @@ header.site-header {
     background: none;
     box-sizing: content-box;
 }
-.site-content .search .textfield input:focus {
+.site-content .textfield input:focus {
     outline: 0;
 }
 
-.site-content .search .textfield input::placeholder {
+.site-content .textfield input::placeholder {
     opacity: 0.62;
+}
+
+@media only screen and (max-width: 843px) {
+    .site-content .search {
+        width: 100%;
+    }
+
+    .site-content .faucet {
+        width: 100%;
+        margin-top: 50px;
+        justify-content: flex-start;
+    }
 }
 
 .site-content .stats .numbers {

@@ -35,7 +35,7 @@ export default {
   "Block": "Block",
   "Gas Used": "Gas Used",
   "Cumulative Gas Used": "Cumulative Gas Used",
-  "Value in Ether": "Value in Ether",
+  "Value in Aiax": "Value in Aiax",
   "From": "From",
   "To": "To",
   "Contract Address": "Contract Address",
@@ -48,6 +48,6 @@ export default {
   "Code": "Code",
   "Configuration": "Configuration",
   "Back": "Back",
-  "Ethereum RPC": "Ethereum RPC",
+  "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
 };
