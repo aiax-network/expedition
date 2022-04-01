@@ -14,8 +14,14 @@ export default function Block(props: any) {
     erpc.eth_getBlockByHash(hash, true).then((b) => {
       if (b === null) { return; }
       setBlock(b);
+    }, (reject) => {
+      console.warn(reject[0]);
+      if (reject[0].name === "ParameterValidationError") {
+        alert('Invalid block hash');
+      }
+      props.history.push("/");
     });
-  }, [hash, erpc]);
+  }, [hash, erpc, props.history]);
 
   if (!block) { return (<CircularProgress />); }
   return (<BlockView block={block} />);

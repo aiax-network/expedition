@@ -18,16 +18,28 @@ export default function TransactionContainer(props: any) {
     erpc.eth_getTransactionByHash(hash).then((tx) => {
       if (tx === null) { return; }
       setTransaction(tx);
+    }, (reject) => {
+      console.warn(reject[0]);
+      if (reject[0].name === "ParameterValidationError") {
+        alert('Invalid transaction hash');
+      }
+      props.history.push("/");
     });
-  }, [hash, erpc]);
+  }, [hash, erpc, props.history]);
 
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_getTransactionReceipt(hash).then((r) => {
       if (r === null) { return; }
       setReceipt(r);
+    }, (reject) => {
+      console.warn(reject[0]);
+      if (reject[0].name === "ParameterValidationError") {
+        alert('Invalid transaction hash');
+      }
+      props.history.push("/");
     });
-  }, [hash, erpc]);
+  }, [hash, erpc, props.history]);
 
   if (!transaction || !receipt) {
     return (<CircularProgress />);

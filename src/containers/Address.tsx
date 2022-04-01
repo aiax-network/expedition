@@ -8,6 +8,7 @@ import { hexToNumber } from "@etclabscore/eserialize";
 import AddressTransactions from "../components/AddressTransactions";
 import { History } from "history";
 import { Transaction } from "@etclabscore/ethereum-json-rpc";
+import ETHJSONSpec from "@etclabscore/ethereum-json-rpc-specification/openrpc.json";
 
 const unit = require("ethjs-unit"); //tslint:disable-line
 
@@ -35,7 +36,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   const to = blockNum;
 
   React.useEffect(() => {
-    if (isNaN(blockNum) || isNaN(blockNumber)) {
+    if (isNaN(blockNum) || isNaN(blockNumber) || !isAddress(address)) {
       return;
     }
     if (blockNum > blockNumber) {
@@ -47,7 +48,7 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   }, [blockNumber, blockNum, history, address]);
 
   React.useEffect(() => {
-    if (blockNumber === undefined || !erpc) {
+    if (blockNumber === undefined || isNaN(blockNumber) || !erpc) {
       return;
     }
     const hexBlockNumber = `0x${blockNumber.toString(16)}`;
@@ -73,11 +74,12 @@ const Address: React.FC<IProps> = ({ match, history }) => {
     if (!erpc) { return; }
     getBlocks(from, to, erpc).then((blcks) => {
       const txes = _.flatMap(blcks, "transactions");
+      const lowerCaseAddress = address.toLowerCase(); // RPC return address in lower case
       const filteredTxes = _.filter(txes, (tx: any) => {
         if (!tx) {
           return false;
         }
-        return tx.to === address || tx.from === address;
+        return tx.to === lowerCaseAddress || tx.from === lowerCaseAddress;
       });
       const sortedTxes = _.sortBy(filteredTxes, (tx: any) => {
         return hexToNumber(tx.blockNumber);
@@ -85,7 +87,12 @@ const Address: React.FC<IProps> = ({ match, history }) => {
       setTransactions(sortedTxes);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [from, to]);
+  }, [from, to, erpc]);
+
+  const isAddress = (q: string): boolean => {
+    const re = new RegExp(ETHJSONSpec.components.schemas.Address.pattern);
+    return re.test(q);
+  };
 
   if (transactionCount === undefined || balance === undefined || code === undefined) {
     return <CircularProgress />;
