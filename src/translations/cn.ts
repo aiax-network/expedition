@@ -26,6 +26,7 @@ export default {
   "Hash": "哈希",
   "Timestamp": "时间戳",
   "Transactions": "交易",
+  "Outcoming Transactions": "即將發生的交易",
   // block view
   "Number": "数量",
   "ParentHash": "父哈希",
@@ -57,4 +58,6 @@ export default {
   "Back": "返回",
   "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
+  "Block not found": "未找到塊",
+  "Transaction not found": "未找到交易",
 };

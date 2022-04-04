@@ -1,4 +1,4 @@
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Typography } from "@material-ui/core";
 import * as React from "react";
 import TxView from "../components/TxView";
 import useEthRPCStore from "../stores/useEthRPCStore";
@@ -6,17 +6,18 @@ import {
   Transaction as ITransaction,
   TransactionReceiptOrNull as ITransactionReceipt,
 } from "@etclabscore/ethereum-json-rpc";
+import { useTranslation } from "react-i18next";
 
 export default function TransactionContainer(props: any) {
   const hash = props.match.params.hash;
   const [erpc] = useEthRPCStore();
-  const [transaction, setTransaction] = React.useState<ITransaction>();
+  const [transaction, setTransaction] = React.useState<ITransaction | null>();
   const [receipt, setReceipt] = React.useState<ITransactionReceipt>();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (!erpc) { return; }
     erpc.eth_getTransactionByHash(hash).then((tx) => {
-      if (tx === null) { return; }
       setTransaction(tx);
     }, (reject) => {
       console.warn(reject[0]);
@@ -41,9 +42,7 @@ export default function TransactionContainer(props: any) {
     });
   }, [hash, erpc, props.history]);
 
-  if (!transaction || !receipt) {
-    return (<CircularProgress />);
-  }
-
+  if (transaction === undefined || !receipt) { return (<CircularProgress />); }
+  if (transaction === null) { return (<Typography>{t("Transaction not found")}</Typography>); }
   return (<TxView tx={transaction} receipt={receipt} />);
 }

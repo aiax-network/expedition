@@ -23,6 +23,7 @@ export default {
   "Hash": "Hash",
   "Timestamp": "Timestamp",
   "Transactions": "Transactions",
+  "Outcoming Transactions": "Outcoming Transactions",
   "Number": "Number",
   "ParentHash": "ParentHash",
   "Miner": "Miner",
@@ -50,4 +51,6 @@ export default {
   "Back": "Back",
   "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
+  "Block not found": "Block not found",
+  "Transaction not found": "Transaction not found",
 };

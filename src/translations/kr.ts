@@ -26,6 +26,7 @@ export default {
   "Hash": "해시",
   "Timestamp": "타임 스탬프",
   "Transactions": "거래",
+  "Outcoming Transactions": "들어오는 거래",
   // block view
   "Number": "수량",
   "ParentHash": "ParentHash",
@@ -57,4 +58,6 @@ export default {
   "Back": "뒤로",
   "Aiax RPC": "Aiax RPC",
   "Service Runner RPC": "Service Runner RPC",
+  "Block not found": "차단을 찾을 수 없음",
+  "Transaction not found": "거래를 찾을 수 없음",
 };

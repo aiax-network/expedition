@@ -17,7 +17,7 @@ function AddressView(props: IAddressViewProps) {
       <CardContent>
         <Typography variant="h6">{t("Address")}: {address}</Typography>
         <Typography variant="h6">{t("Balance")}: {balance}</Typography>
-        <Typography variant="h6">{t("Transactions")}: {txCount}</Typography>
+        <Typography variant="h6">{t("Outcoming Transactions")}: {txCount}</Typography>
         <br />
         <div>
           <div>{t("Code")}</div>
