@@ -44,14 +44,14 @@ function BlockGasPrice(props: any) {
       <TableRow>
         <TableCell>{t("Min Gas Price")}</TableCell>
         <TableCell>
-          {hexToNumber(BigIntMinBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice || "")}
+          {hexToNumber(BigIntMinBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice || "")} Ai
         </TableCell>
       </TableRow>
 
       <TableRow>
         <TableCell>{t("Max Gas Price")}</TableCell>
         <TableCell>
-          {hexToNumber(BigIntMaxBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice) || ""}
+          {hexToNumber(BigIntMaxBy(transactions, (tx: any) => BigInt(tx.gasPrice))?.gasPrice) || ""} Ai
         </TableCell>
       </TableRow>
     </>
